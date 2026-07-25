@@ -525,7 +525,7 @@
             pointer-events: auto;
         }
 
-        /* ===== ELEGANT MONOCHROME INVOICE OVERLAY ===== */
+        /* ===== ELEGANT INVOICE OVERLAY ===== */
         .invoice-overlay {
             display: none;
             position: fixed;
@@ -541,6 +541,7 @@
             align-items: center;
             padding: 20px;
             direction: rtl;
+            overflow-y: auto;
         }
         .invoice-overlay.show {
             display: flex;
@@ -553,146 +554,152 @@
 
         .invoice-box {
             background: #ffffff;
-            color: #3a3a3a;
-            max-width: 580px;
+            color: #2c2c2c;
+            max-width: 560px;
             width: 100%;
-            max-height: 92vh;
-            overflow-y: auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
-            border: 1px solid #d0d0d0;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border: 2px solid #d4af37;
             padding: 0;
+            margin: auto;
         }
 
         .invoice-header {
-            background: #ffffff;
-            color: #3a3a3a;
-            padding: 26px 24px 18px;
-            border-radius: 20px 20px 0 0;
+            background: linear-gradient(135deg, #f5f1e8 0%, #ece7de 100%);
+            color: #2c2c2c;
+            padding: 28px 24px 20px;
+            border-radius: 14px 14px 0 0;
             text-align: center;
             position: relative;
-            border-bottom: 2px solid #d0d0d0;
+            border-bottom: 3px solid #d4af37;
         }
         .invoice-header .inv-icon {
-            font-size: 28px;
+            font-size: 32px;
             display: block;
-            margin-bottom: 4px;
-            color: #6a6a6a;
+            margin-bottom: 8px;
         }
         .invoice-header h3 {
-            font-size: 22px;
-            margin: 0 0 2px;
+            font-size: 24px;
+            margin: 0 0 4px;
             font-weight: 900;
             letter-spacing: -0.5px;
-            color: #3a3a3a;
+            color: #b8860b;
         }
         .invoice-header .inv-sub {
             font-size: 12px;
-            color: #7a7a7a;
+            color: #666;
             font-weight: 400;
+            margin-bottom: 12px;
         }
         .invoice-header .buyer-badge {
             display: inline-block;
-            background: #f0f0f0;
-            color: #3a3a3a;
-            padding: 6px 22px;
-            border-radius: 30px;
-            font-size: 15px;
+            background: #ffffff;
+            color: #2c2c2c;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-size: 14px;
             font-weight: 700;
-            margin-top: 10px;
-            border: 1px solid #d0d0d0;
+            border: 2px solid #d4af37;
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.1);
         }
 
         .invoice-body {
-            padding: 22px 24px 16px;
+            padding: 24px;
+            background: #ffffff;
         }
 
         .invoice-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
-            color: #7a7a7a;
-            padding-bottom: 12px;
-            border-bottom: 1px dashed #d0d0d0;
-            margin-bottom: 12px;
+            font-size: 11px;
+            color: #666;
+            padding-bottom: 14px;
+            border-bottom: 2px solid #d4af37;
+            margin-bottom: 16px;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 8px;
+            font-weight: 600;
         }
 
         .invoice-row {
             display: flex;
             justify-content: space-between;
-            padding: 9px 0;
-            border-bottom: 1px solid #eaeaea;
+            padding: 11px 0;
+            border-bottom: 1px solid #e0ddd5;
             font-size: 14px;
             flex-wrap: wrap;
-            gap: 6px;
+            gap: 12px;
             align-items: center;
         }
         .invoice-row .label {
-            color: #5a5a6a;
-            font-weight: 500;
+            color: #555;
+            font-weight: 600;
+            flex: 1;
         }
         .invoice-row .value {
             font-weight: 700;
-            color: #3a3a3a;
+            color: #2c2c2c;
             text-align: left;
+            min-width: 100px;
         }
         .invoice-row.total-row {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 900;
-            color: #3a3a3a;
-            border-top: 2px solid #c0c0c0;
-            border-bottom: 2px solid #c0c0c0;
-            padding: 12px 14px;
-            margin-top: 12px;
-            background: #f8f8f8;
+            color: #b8860b;
+            border-top: 3px solid #d4af37;
+            border-bottom: 3px solid #d4af37;
+            padding: 16px 12px;
+            margin-top: 8px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(184, 134, 11, 0.04));
             border-radius: 8px;
         }
         .invoice-row.total-row .value {
-            color: #3a3a3a;
+            color: #b8860b;
+            font-size: 18px;
         }
         .inv-divider {
-            margin: 10px 0;
-            border-top: 1px dashed #d0d0d0;
+            margin: 12px 0;
+            border-top: 2px dashed #d4af37;
         }
         .word-amount-invoice {
-            font-size: 13px;
-            color: #3a3a3a;
-            background: #f0f0f0;
-            padding: 4px 14px;
+            font-size: 12px;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.06));
+            padding: 6px 16px;
             border-radius: 12px;
             display: inline-block;
-            font-weight: 600;
-            border: 1px solid #d0d0d0;
+            font-weight: 700;
+            border: 1px solid #d4af37;
         }
 
         .invoice-actions {
             display: flex;
             gap: 8px;
             padding: 14px 20px 18px;
-            background: #f8f8f8;
-            border-top: 1px solid #d0d0d0;
-            border-radius: 0 0 20px 20px;
+            background: #f5f1e8;
+            border-top: 2px solid #d4af37;
+            border-radius: 0 0 14px 14px;
             justify-content: center;
             flex-wrap: wrap;
         }
         .invoice-actions button {
-            padding: 9px 16px;
-            border: 1px solid #d0d0d0;
+            padding: 10px 18px;
+            border: 2px solid #d4af37;
             border-radius: 10px;
             font-weight: 700;
             cursor: pointer;
             font-size: 13px;
-            transition: 0.2s;
-            min-width: 64px;
+            transition: 0.25s;
+            min-width: 70px;
             background: #ffffff;
-            color: #3a3a3a;
+            color: #b8860b;
         }
         .invoice-actions button:hover {
-            background: #3a3a3a;
+            background: #b8860b;
             color: #ffffff;
-            border-color: #3a3a3a;
+            border-color: #b8860b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(184, 134, 11, 0.2);
         }
         .invoice-actions button:active {
             transform: scale(0.95);
@@ -707,34 +714,32 @@
                 position: static !important;
                 background: #fff !important;
                 backdrop-filter: none !important;
-                display: block !important;
+                display: flex !important;
                 padding: 0 !important;
                 animation: none !important;
             }
             .invoice-box {
-                border: 1px solid #aaa !important;
+                border: 2px solid #333 !important;
                 box-shadow: none !important;
-                max-height: none !important;
                 border-radius: 0 !important;
                 max-width: 100% !important;
             }
             .invoice-header {
-                background: #fff !important;
-                color: #000 !important;
-                border-bottom: 2px solid #aaa !important;
+                background: #f5f1e8 !important;
+                color: #2c2c2c !important;
+                border-bottom: 3px solid #333 !important;
             }
             .invoice-actions {
                 display: none !important;
             }
             .invoice-row.total-row {
                 background: #f0f0f0 !important;
-                border-top: 2px solid #aaa !important;
-                border-bottom: 2px solid #aaa !important;
+                border-top: 3px solid #333 !important;
+                border-bottom: 3px solid #333 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
             .word-amount-invoice {
-                background: #f0f0f0 !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
@@ -768,31 +773,34 @@
             .row .form-group {
                 min-width: 100px;
             }
+            .invoice-header {
+                padding: 20px 16px 14px;
+            }
             .invoice-header h3 {
-                font-size: 19px;
+                font-size: 20px;
             }
             .invoice-header .buyer-badge {
-                font-size: 14px;
-                padding: 5px 16px;
+                font-size: 13px;
+                padding: 6px 18px;
             }
             .invoice-body {
-                padding: 16px 14px;
+                padding: 18px 14px;
             }
             .invoice-row {
                 font-size: 13px;
             }
             .invoice-row.total-row {
                 font-size: 16px;
-                padding: 10px 12px;
+                padding: 12px 10px;
             }
             .invoice-actions {
-                padding: 12px 14px 16px;
+                padding: 12px 12px 14px;
                 gap: 6px;
             }
             .invoice-actions button {
                 padding: 8px 12px;
                 font-size: 11px;
-                min-width: 54px;
+                min-width: 60px;
             }
             .result-item {
                 font-size: 13px;
@@ -945,8 +953,8 @@
             <div class="invoice-body" id="invoiceContent"></div>
             <div class="invoice-actions" id="invoiceModalActions">
                 <button onclick="closeInvoice()">✖️ بستن</button>
-                <button onclick="downloadInvoicePDFModal()">📥 PDF</button>
-                <button onclick="downloadInvoicePNGModal()">🖼️ PNG</button>
+                <button onclick="downloadInvoicePDFNew()">📥 PDF</button>
+                <button onclick="downloadInvoicePNGNew()">🖼️ PNG</button>
                 <button onclick="printInvoiceModal()">🖨️ پرینت</button>
             </div>
         </div>
@@ -1334,131 +1342,79 @@
 
         function closeInvoice() { document.getElementById('invoiceOverlay').classList.remove('show'); }
 
-        /* ===== OPTIMIZED & IOS-SAFE CANVAS CAPTURE FOR PDF ===== */
-        async function captureInvoiceCanvas() {
-            const el = document.getElementById('invoiceBox');
-            const actionsDiv = document.getElementById('invoiceModalActions');
-            const overlay = document.getElementById('invoiceOverlay');
-
-            const wasShowing = overlay.classList.contains('show');
-            if (!wasShowing) { 
-                overlay.classList.add('show'); 
-                await new Promise(r => setTimeout(r, 300)); 
-            }
-
-            // اطمینان از لود کامل فونت‌ها جهت عدم به‌هم‌ریختگی فونت فارسی
-            if (document.fonts && document.fonts.ready) {
-                await document.fonts.ready;
-            }
-
-            // ذخیره استایل‌های اصلی برای بازگرداندن پس از رندر
-            const origMaxHeight = el.style.maxHeight;
-            const origOverflow = el.style.overflow;
-            const origDisplay = actionsDiv.style.display;
-            const origBoxShadow = el.style.boxShadow;
-
-            // برداشتن اسکرول‌بار و محدودیت ارتفاع برای کادربندی کامل فاکتور در آیفون
-            actionsDiv.style.display = 'none';
-            el.style.maxHeight = 'none';
-            el.style.overflow = 'visible';
-            el.style.boxShadow = 'none';
-
-            try {
-                await new Promise(r => setTimeout(r, 120));
-                const canvas = await html2canvas(el, { 
-                    scale: 3, 
-                    useCORS: true, 
-                    allowTaint: true, 
-                    backgroundColor: '#ffffff', 
-                    logging: false,
-                    windowWidth: el.scrollWidth,
-                    windowHeight: el.scrollHeight
-                });
-                return canvas;
-            } finally {
-                // بازگرداندن وضعیت قبلی DOM
-                actionsDiv.style.display = origDisplay;
-                el.style.maxHeight = origMaxHeight;
-                el.style.overflow = origOverflow;
-                el.style.boxShadow = origBoxShadow;
-                if (!wasShowing) overlay.classList.remove('show');
-            }
-        }
-
-        /* ===== OPTIMIZED PDF DOWNLOAD (A4 FIT & IOS COMPATIBLE) ===== */
-        async function downloadInvoicePDFModal() {
+        /* ===== OPTIMIZED PDF DOWNLOAD (حل شده) ===== */
+        async function downloadInvoicePDFNew() {
             try {
                 showToast('⏳ ساختن PDF...');
-                const canvas = await captureInvoiceCanvas();
-                const { jsPDF } = window.jspdf;
+                const el = document.getElementById('invoiceBox');
+                
+                // تنظیمات بهتر برای html2canvas
+                const canvas = await html2canvas(el, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    logging: false,
+                    windowWidth: el.scrollWidth,
+                    windowHeight: el.scrollHeight,
+                    imageTimeout: 5000
+                });
 
-                // ابعاد دقیق برگه A4 عمودی به میلی‌متر
+                const { jsPDF } = window.jspdf;
+                const imgData = canvas.toDataURL('image/jpeg', 0.92);
+                
                 const pdfWidth = 210;
                 const pdfHeight = 297;
-                const margin = 12; // حاشیه از اطراف
-
-                const maxWidth = pdfWidth - (margin * 2);
-                const maxHeight = pdfHeight - (margin * 2);
-
-                let imgWidth = maxWidth;
-                let imgHeight = (canvas.height / canvas.width) * imgWidth;
-
-                // مقیاس‌بندی هوشمند برای قرارگیری دقیق محتوا تنها در یک صفحه A4
-                if (imgHeight > maxHeight) {
-                    imgHeight = maxHeight;
-                    imgWidth = (canvas.width / canvas.height) * imgHeight;
-                }
-
-                // قرارگیری در مرکز برگه A4
-                const x = (pdfWidth - imgWidth) / 2;
-                const y = (pdfHeight - imgHeight) / 2;
-
+                
+                const imgWidth = 180;
+                const imgHeight = (canvas.height / canvas.width) * imgWidth;
+                
                 const pdf = new jsPDF({
                     orientation: 'portrait',
                     unit: 'mm',
                     format: 'a4'
                 });
-
-                pdf.addImage(canvas.toDataURL('image/png'), 'PNG', x, y, imgWidth, imgHeight);
-
-                // نام انگلیسی استاندارد برای جلوگیری از لغو دانلود در مرورگر Safari آیفون
-                const fileName = (currentInvoiceType === 'coin' ? 'Factor_Coin.pdf' : 'Factor_Gold.pdf');
-
-                // تشخیص دستگاه آیفون/آیپد برای دانلود بدون خطا
-                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-                if (isIOS) {
-                    const blob = pdf.output('blob');
-                    const blobUrl = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = blobUrl;
-                    a.download = fileName;
-                    a.target = '_blank';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    setTimeout(() => URL.revokeObjectURL(blobUrl), 3000);
-                } else {
-                    pdf.save(fileName);
-                }
-
+                
+                const x = (pdfWidth - imgWidth) / 2;
+                const y = 10;
+                
+                pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight);
+                
+                const fileName = currentInvoiceType === 'coin' ? 'Factor_Coin.pdf' : 'Factor_Gold.pdf';
+                pdf.save(fileName);
+                
                 showToast('✅ PDF دانلود شد');
             } catch (err) {
                 console.error(err);
-                showToast('❌ خطا در ساخت PDF');
+                showToast('❌ خطا در ساخت PDF - دوباره تلاش کنید');
             }
         }
 
-        async function downloadInvoicePNGModal() {
+        /* ===== OPTIMIZED PNG DOWNLOAD ===== */
+        async function downloadInvoicePNGNew() {
             try {
                 showToast('⏳ ساختن تصویر...');
-                const canvas = await captureInvoiceCanvas();
+                const el = document.getElementById('invoiceBox');
+                
+                const canvas = await html2canvas(el, {
+                    scale: 3,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff',
+                    logging: false,
+                    windowWidth: el.scrollWidth,
+                    windowHeight: el.scrollHeight,
+                    imageTimeout: 5000
+                });
+                
                 const link = document.createElement('a');
-                link.download = (currentInvoiceType === 'coin' ? 'Factor_Coin.png' : 'Factor_Gold.png');
+                link.download = currentInvoiceType === 'coin' ? 'Factor_Coin.png' : 'Factor_Gold.png';
                 link.href = canvas.toDataURL('image/png');
                 link.click();
+                
                 showToast('✅ تصویر ذخیره شد');
-            } catch (_) {
+            } catch (err) {
+                console.error(err);
                 showToast('❌ خطا در دانلود تصویر');
             }
         }
