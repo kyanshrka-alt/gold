@@ -223,7 +223,7 @@
             background: #ffffff;
             color: #2c2c2c;
             width: 100%;
-            max-width: 520px;
+            max-width: 540px;
             border-radius: 20px;
             border: 2px solid #d4af37;
             box-shadow: 0 20px 50px rgba(0,0,0,0.2);
@@ -233,7 +233,7 @@
             transition: all 0.3s ease;
         }
 
-        /* استایل حالت سیاه و سفید فاکتور */
+        /* حالت سیاه و سفید */
         .invoice-box.bw-mode {
             background: #ffffff !important;
             color: #000000 !important;
@@ -263,60 +263,60 @@
 
         .invoice-header {
             background: linear-gradient(135deg, #f5f1e8 0%, #ece7de 100%);
-            padding: 20px 16px;
+            padding: 24px 20px;
             text-align: center;
             border-bottom: 3px solid #d4af37;
         }
-        .invoice-header h3 { font-size: 20px; color: #b8860b; font-weight: 900; }
+        .invoice-header h3 { font-size: 22px; color: #b8860b; font-weight: 900; }
         .invoice-header .buyer-badge {
             display: inline-block;
             background: #ffffff;
-            padding: 4px 16px;
+            padding: 6px 18px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             border: 1.5px solid #d4af37;
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
-        .invoice-body { padding: 20px; background: #ffffff; }
+        .invoice-body { padding: 24px; background: #ffffff; }
         .invoice-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 11px;
+            font-size: 12px;
             color: #666;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
             border-bottom: 2px solid #d4af37;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: 700;
         }
         .invoice-row {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #e0ddd5;
-            font-size: 13px;
+            font-size: 14px;
         }
         .invoice-row.total-row {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 900;
             color: #b8860b;
             border-top: 2px solid #d4af37;
             border-bottom: 2px solid #d4af37;
-            padding: 12px 10px;
-            margin-top: 10px;
+            padding: 14px 12px;
+            margin-top: 14px;
             background: rgba(212, 175, 55, 0.08);
             border-radius: 8px;
         }
 
         .stamp-badge {
             position: absolute;
-            bottom: 75px;
-            left: 20px;
+            bottom: 80px;
+            left: 24px;
             border: 3px double #2e7d32;
             color: #2e7d32;
-            padding: 4px 10px;
-            font-size: 13px;
+            padding: 6px 14px;
+            font-size: 14px;
             font-weight: 900;
             border-radius: 6px;
             transform: rotate(-12deg);
@@ -393,18 +393,47 @@
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        /* ===== PRINT STYLES (مطابق کد قبلی شما) ===== */
+        /* ===== FIX: PRINT STYLES (تنظیم دقیق وسط‌چین و ابعاد استاندارد A4) ===== */
         @media print {
-            body * { visibility: hidden; }
-            #invoiceBox, #invoiceBox * { visibility: visible; }
-            #invoiceBox {
-                position: absolute;
-                left: 0; top: 0; width: 100%;
-                border: none !important;
-                box-shadow: none !important;
+            @page {
+                size: A4 portrait;
+                margin: 0;
             }
-            .invoice-actions { display: none !important; }
-            .stamp-badge { opacity: 1 !important; }
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #ffffff !important;
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+            }
+            .app-card, .invoice-overlay, .history-overlay, .toast {
+                display: none !important;
+            }
+            /* نمایش تخصصی فاکتور در مرکز صفحه هنگام چاپ */
+            #invoiceBox {
+                display: block !important;
+                position: absolute !important;
+                left: 50% !important;
+                top: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                width: 85% !important;
+                max-width: 650px !important;
+                border: 2px solid #d4af37 !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                border-radius: 16px !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .invoice-actions {
+                display: none !important;
+            }
+            .stamp-badge {
+                opacity: 1 !important;
+            }
         }
     </style>
 </head>
@@ -606,7 +635,6 @@
             document.getElementById('wageLabel').innerText = type === 'percent' ? 'اجرت ساخت (%)' : 'اجرت هر گرم (تومان)';
         }
 
-        /* سوئیچ حالت فاکتور بین رنگی و سیاه و سفید */
         function toggleColorMode() {
             const box = document.getElementById('invoiceBox');
             box.classList.toggle('bw-mode');
@@ -810,7 +838,6 @@
             } catch (_) {}
         }
 
-        /* پرینت استانداردی که مشابه کد قبلی عمل می‌کند */
         function printInvoiceModal() {
             window.print();
         }
