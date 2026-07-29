@@ -204,6 +204,99 @@
             color: #fff;
         }
 
+        /* ===== CODE INPUT SECTION ===== */
+        .code-section {
+            background: #f5f1e8;
+            border-radius: 16px;
+            padding: 14px 16px;
+            margin: 10px 0 18px;
+            border: 1.5px solid #d4af37;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .code-section input {
+            flex: 1;
+            min-width: 100px;
+            padding: 10px 14px;
+            border: 1.5px solid #d4af37;
+            border-radius: 12px;
+            background: #fff;
+            font-size: 15px;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        .code-section button {
+            padding: 10px 18px;
+            background: #b8860b;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+        .code-section button:hover { background: #8b6f0b; }
+        .code-section .manage-btn {
+            background: #6a6a7a;
+        }
+        .code-section .manage-btn:hover { background: #4a4a5a; }
+
+        /* ===== MANAGE CODES MODAL ===== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+        }
+        .modal-overlay.show { display: flex; }
+        .modal-box {
+            background: #fff;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            padding: 24px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .modal-header h3 { font-size: 20px; color: #b8860b; }
+        .modal-close { background: none; border: none; font-size: 24px; cursor: pointer; color: #999; }
+        .modal-list { overflow-y: auto; flex: 1; margin-bottom: 16px; }
+        .code-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9f8f6;
+            padding: 10px 14px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            border: 1px solid #e8e4dc;
+        }
+        .code-item .code-name { font-weight: 700; color: #b8860b; font-size: 14px; }
+        .code-item .code-details { font-size: 12px; color: #666; }
+        .code-item .del-btn {
+            background: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .add-code-form { display: flex; flex-direction: column; gap: 10px; }
+        .add-code-form .row { gap: 8px; }
+        .add-code-form input { padding: 10px; border: 1.5px solid #e8e4dc; border-radius: 12px; }
+        .add-code-form button { padding: 10px; background: #b8860b; color: #fff; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
+
         /* ===== INVOICE OVERLAY ===== */
         .invoice-overlay {
             display: none;
@@ -233,7 +326,6 @@
             transition: all 0.3s ease;
         }
 
-        /* حالت سیاه و سفید */
         .invoice-box.bw-mode {
             background: #ffffff !important;
             color: #000000 !important;
@@ -393,7 +485,7 @@
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-        /* ===== CSS اختصاصی حل مشکل iOS و AirPrint ===== */
+        /* ===== PRINT ===== */
         @media print {
             @page {
                 size: A4 portrait;
@@ -408,7 +500,7 @@
                 background: #ffffff !important;
                 display: block !important;
             }
-            .app-card, .history-overlay, .toast, .invoice-actions {
+            .app-card, .history-overlay, .toast, .invoice-actions, .modal-overlay {
                 display: none !important;
             }
             .invoice-overlay {
@@ -451,6 +543,13 @@
             <div class="header-actions">
                 <button onclick="openHistory()">📜 تاریخچه</button>
             </div>
+        </div>
+
+        <!-- ===== CODE INPUT SECTION ===== -->
+        <div class="code-section">
+            <input type="text" id="codeInput" placeholder="کد طلا را وارد کنید..." dir="ltr" />
+            <button onclick="applyCode()">🔍 اعمال کد</button>
+            <button class="manage-btn" onclick="openManageCodes()">⚙️ مدیریت</button>
         </div>
 
         <div class="form-group">
@@ -561,6 +660,7 @@
         </div>
     </div>
 
+    <!-- ===== INVOICE OVERLAY ===== -->
     <div class="invoice-overlay" id="invoiceOverlay">
         <div class="invoice-box" id="invoiceBox">
             <div class="invoice-header">
@@ -580,6 +680,7 @@
         </div>
     </div>
 
+    <!-- ===== HISTORY OVERLAY ===== -->
     <div class="history-overlay" id="historyOverlay">
         <div class="history-box">
             <div class="history-header">
@@ -591,13 +692,160 @@
         </div>
     </div>
 
+    <!-- ===== MANAGE CODES MODAL ===== -->
+    <div class="modal-overlay" id="manageCodesModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>🔑 مدیریت کدهای طلا</h3>
+                <button class="modal-close" onclick="closeManageCodes()">&times;</button>
+            </div>
+            <div class="modal-list" id="codeList"></div>
+            <div class="add-code-form">
+                <h4 style="font-size:14px;color:#b8860b;">➕ افزودن کد جدید</h4>
+                <div class="row">
+                    <input type="text" id="newCodeName" placeholder="کد (مثلاً G123)" />
+                    <input type="number" id="newCodeWeight" step="0.001" placeholder="وزن (گرم)" />
+                </div>
+                <div class="row">
+                    <input type="number" id="newCodeWage" step="0.1" placeholder="اجرت (%)" />
+                    <input type="number" id="newCodeProfit" step="0.1" placeholder="سود (%)" />
+                    <input type="number" id="newCodeTax" step="0.1" placeholder="مالیات (%)" />
+                </div>
+                <button onclick="addNewCode()">➕ افزودن کد</button>
+            </div>
+        </div>
+    </div>
+
     <div class="toast" id="toast"></div>
 
     <script>
+        // ===== DATA =====
         let lastGoldData = null;
         let lastCoinData = null;
         let currentInvoiceType = 'gold';
 
+        // ===== CODE STORAGE =====
+        function getCodes() {
+            try {
+                return JSON.parse(localStorage.getItem('gold_codes') || '{}');
+            } catch { return {}; }
+        }
+
+        function saveCodes(codes) {
+            localStorage.setItem('gold_codes', JSON.stringify(codes));
+        }
+
+        // ===== APPLY CODE =====
+        function applyCode() {
+            const code = document.getElementById('codeInput').value.trim().toUpperCase();
+            if (!code) return showToast('لطفاً کد را وارد کنید');
+
+            const codes = getCodes();
+            if (!codes[code]) return showToast('❌ کد یافت نشد');
+
+            const data = codes[code];
+            document.getElementById('weight').value = data.weight || '';
+            document.getElementById('wage').value = data.wage || 15;
+            document.getElementById('profit').value = data.profit || 7;
+            document.getElementById('tax').value = data.tax || 9;
+
+            // اگر عیار ذخیره شده بود
+            if (data.carat) {
+                const sel = document.getElementById('caratSelect');
+                for (let i = 0; i < sel.options.length; i++) {
+                    if (sel.options[i].value == data.carat) { sel.selectedIndex = i; break; }
+                }
+            }
+
+            // اگر اجرت از نوع درصدی یا تومانی بود
+            if (data.wageType) {
+                document.getElementById('wageType').value = data.wageType;
+                toggleWageType();
+            }
+
+            showToast(`✅ کد ${code} اعمال شد`);
+            document.getElementById('codeInput').value = '';
+        }
+
+        // ===== OPEN MANAGE CODES =====
+        function openManageCodes() {
+            renderCodeList();
+            document.getElementById('manageCodesModal').classList.add('show');
+        }
+
+        function closeManageCodes() {
+            document.getElementById('manageCodesModal').classList.remove('show');
+        }
+
+        function renderCodeList() {
+            const codes = getCodes();
+            const container = document.getElementById('codeList');
+            const keys = Object.keys(codes);
+            
+            if (keys.length === 0) {
+                container.innerHTML = '<div style="text-align:center;padding:20px;color:#888;">هیچ کدی ثبت نشده است</div>';
+                return;
+            }
+
+            container.innerHTML = keys.map(key => {
+                const d = codes[key];
+                return `
+                    <div class="code-item">
+                        <div>
+                            <div class="code-name">🔑 ${key}</div>
+                            <div class="code-details">وزن: ${d.weight || '---'} گرم | اجرت: ${d.wage || '---'}% | سود: ${d.profit || '---'}% | مالیات: ${d.tax || '---'}%</div>
+                        </div>
+                        <button class="del-btn" onclick="deleteCode('${key}')">✕</button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function deleteCode(key) {
+            if (!confirm(`آیا کد "${key}" حذف شود؟`)) return;
+            const codes = getCodes();
+            delete codes[key];
+            saveCodes(codes);
+            renderCodeList();
+            showToast(`کد ${key} حذف شد`);
+        }
+
+        function addNewCode() {
+            const name = document.getElementById('newCodeName').value.trim().toUpperCase();
+            const weight = parseFloat(document.getElementById('newCodeWeight').value);
+            const wage = parseFloat(document.getElementById('newCodeWage').value);
+            const profit = parseFloat(document.getElementById('newCodeProfit').value);
+            const tax = parseFloat(document.getElementById('newCodeTax').value);
+
+            if (!name) return showToast('لطفاً کد را وارد کنید');
+            if (isNaN(weight) || weight <= 0) return showToast('وزن معتبر وارد کنید');
+            if (isNaN(wage) || wage < 0) return showToast('اجرت معتبر وارد کنید');
+            if (isNaN(profit) || profit < 0) return showToast('سود معتبر وارد کنید');
+            if (isNaN(tax) || tax < 0) return showToast('مالیات معتبر وارد کنید');
+
+            const codes = getCodes();
+            if (codes[name]) return showToast('❌ این کد قبلاً ثبت شده است');
+
+            codes[name] = { weight, wage, profit, tax };
+            saveCodes(codes);
+
+            // clear fields
+            document.getElementById('newCodeName').value = '';
+            document.getElementById('newCodeWeight').value = '';
+            document.getElementById('newCodeWage').value = '';
+            document.getElementById('newCodeProfit').value = '';
+            document.getElementById('newCodeTax').value = '';
+
+            renderCodeList();
+            showToast(`✅ کد ${name} با موفقیت ثبت شد`);
+        }
+
+        // ===== ENTER KEY FOR CODE =====
+        document.getElementById('codeInput').addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') applyCode();
+        });
+
+        // ===== UTILITY FUNCTIONS =====
         function formatInput(el) {
             let v = el.value.replace(/,/g, '');
             if (!isNaN(v) && v !== '') el.value = Number(v).toLocaleString();
@@ -651,6 +899,7 @@
             }
         }
 
+        // ===== HISTORY =====
         function saveToHistory(item) {
             let history = JSON.parse(localStorage.getItem('gold_calc_history') || '[]');
             history.unshift(item);
@@ -684,6 +933,7 @@
             showToast('تاریخچه پاک شد');
         }
 
+        // ===== CALCULATE GOLD =====
         function calculateGold() {
             const gold18 = getGlobalPrice();
             if (!gold18) return showToast('قیمت ۱۸ عیار را وارد کنید');
@@ -720,6 +970,7 @@
             saveToHistory({ title: `طلا ${carat} عیار (${weight} گرم)`, buyer: getBuyerName(), total, date: persianDate() });
         }
 
+        // ===== CALCULATE COIN =====
         function calculateCoin() {
             const gold18 = getGlobalPrice();
             if (!gold18) return showToast('قیمت ۱۸ عیار را وارد کنید');
@@ -745,6 +996,7 @@
             saveToHistory({ title: `${opt.text} (${count} عدد)`, buyer: getBuyerName(), total: totalMarket, date: persianDate() });
         }
 
+        // ===== INVOICE FUNCTIONS =====
         function showGoldInvoice() {
             if (!lastGoldData) return;
             const d = lastGoldData;
@@ -847,6 +1099,31 @@
         function printInvoiceModal() {
             window.print();
         }
+
+        // ===== CLOSE MODAL ON OVERLAY CLICK =====
+        document.getElementById('manageCodesModal').addEventListener('click', function(e) {
+            if (e.target === this) closeManageCodes();
+        });
+        document.getElementById('invoiceOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeInvoice();
+        });
+        document.getElementById('historyOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeHistory();
+        });
+
+        // ===== LOAD SAMPLE CODES =====
+        (function loadSampleCodes() {
+            const codes = getCodes();
+            if (Object.keys(codes).length === 0) {
+                // نمونه کدهای پیش‌فرض
+                const samples = {
+                    'G001': { weight: 4.25, wage: 15, profit: 7, tax: 9 },
+                    'G002': { weight: 3.75, wage: 12, profit: 5, tax: 9 },
+                    'G003': { weight: 5.20, wage: 18, profit: 8, tax: 9 },
+                };
+                saveCodes(samples);
+            }
+        })();
     </script>
 </body>
 </html>
