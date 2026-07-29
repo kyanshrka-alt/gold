@@ -735,7 +735,7 @@
             localStorage.setItem('gold_codes', JSON.stringify(codes));
         }
 
-        // ===== APPLY CODE =====
+        // ===== APPLY CODE (FIXED) =====
         function applyCode() {
             const code = document.getElementById('codeInput').value.trim().toUpperCase();
             if (!code) return showToast('لطفاً کد را وارد کنید');
@@ -744,10 +744,23 @@
             if (!codes[code]) return showToast('❌ کد یافت نشد');
 
             const data = codes[code];
-            document.getElementById('weight').value = data.weight || '';
-            document.getElementById('wage').value = data.wage || 15;
-            document.getElementById('profit').value = data.profit || 7;
-            document.getElementById('tax').value = data.tax || 9;
+            
+            // ✅ استفاده از !== undefined برای تشخیص مقدار صفر
+            if (data.weight !== undefined && data.weight !== null) {
+                document.getElementById('weight').value = data.weight;
+            }
+            
+            if (data.wage !== undefined && data.wage !== null) {
+                document.getElementById('wage').value = data.wage;
+            }
+            
+            if (data.profit !== undefined && data.profit !== null) {
+                document.getElementById('profit').value = data.profit;
+            }
+            
+            if (data.tax !== undefined && data.tax !== null) {
+                document.getElementById('tax').value = data.tax;
+            }
 
             // اگر عیار ذخیره شده بود
             if (data.carat) {
@@ -793,7 +806,7 @@
                     <div class="code-item">
                         <div>
                             <div class="code-name">🔑 ${key}</div>
-                            <div class="code-details">وزن: ${d.weight || '---'} گرم | اجرت: ${d.wage || '---'}% | سود: ${d.profit || '---'}% | مالیات: ${d.tax || '---'}%</div>
+                            <div class="code-details">وزن: ${d.weight || '---'} گرم | اجرت: ${d.wage !== undefined && d.wage !== null ? d.wage : '---'}% | سود: ${d.profit || '---'}% | مالیات: ${d.tax !== undefined && d.tax !== null ? d.tax : '---'}%</div>
                         </div>
                         <button class="del-btn" onclick="deleteCode('${key}')">✕</button>
                     </div>
@@ -810,6 +823,7 @@
             showToast(`کد ${key} حذف شد`);
         }
 
+        // ===== ADD NEW CODE (FIXED) =====
         function addNewCode() {
             const name = document.getElementById('newCodeName').value.trim().toUpperCase();
             const weight = parseFloat(document.getElementById('newCodeWeight').value);
@@ -819,9 +833,11 @@
 
             if (!name) return showToast('لطفاً کد را وارد کنید');
             if (isNaN(weight) || weight <= 0) return showToast('وزن معتبر وارد کنید');
-            if (isNaN(wage) || wage < 0) return showToast('اجرت معتبر وارد کنید');
-            if (isNaN(profit) || profit < 0) return showToast('سود معتبر وارد کنید');
-            if (isNaN(tax) || tax < 0) return showToast('مالیات معتبر وارد کنید');
+            
+            // ✅ اجازه می‌دهیم اجرت، سود و مالیات صفر باشند
+            if (isNaN(wage)) return showToast('اجرت معتبر وارد کنید');
+            if (isNaN(profit)) return showToast('سود معتبر وارد کنید');
+            if (isNaN(tax)) return showToast('مالیات معتبر وارد کنید');
 
             const codes = getCodes();
             if (codes[name]) return showToast('❌ این کد قبلاً ثبت شده است');
@@ -1115,11 +1131,11 @@
         (function loadSampleCodes() {
             const codes = getCodes();
             if (Object.keys(codes).length === 0) {
-                // نمونه کدهای پیش‌فرض
+                // نمونه کدهای پیش‌فرض با مالیات صفر
                 const samples = {
                     'G001': { weight: 4.25, wage: 15, profit: 7, tax: 9 },
-                    'G002': { weight: 3.75, wage: 12, profit: 5, tax: 9 },
-                    'G003': { weight: 5.20, wage: 18, profit: 8, tax: 9 },
+                    'G002': { weight: 3.75, wage: 12, profit: 5, tax: 0 },   // ✅ مالیات صفر
+                    'G003': { weight: 5.20, wage: 18, profit: 8, tax: 0 },   // ✅ مالیات صفر
                 };
                 saveCodes(samples);
             }
