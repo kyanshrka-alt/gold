@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -25,12 +26,14 @@
             direction: rtl;
             -webkit-font-smoothing: antialiased;
         }
+
+        /* ===== MAIN CARD ===== */
         .app-card {
-            max-width: 700px;
+            max-width: 650px;
             width: 100%;
             background: #ffffff;
             border-radius: 32px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(184, 134, 11, 0.04);
             padding: 28px 24px 32px;
             border: 1px solid rgba(184, 134, 11, 0.08);
             position: relative;
@@ -43,6 +46,8 @@
             background: linear-gradient(90deg, #b8860b, #d4a017, #b8860b);
             border-radius: 32px 32px 0 0;
         }
+
+        /* ===== HEADER ===== */
         .app-header {
             display: flex;
             justify-content: space-between;
@@ -71,77 +76,69 @@
             transition: all 0.2s ease;
             -webkit-tap-highlight-color: transparent;
         }
-        .header-actions button:hover {
-            background: #b8860b;
-            color: #fff;
-        }
         .header-actions button:active {
             transform: scale(0.95);
         }
 
-‎        /* ===== بخش مدیریت جدولی ===== */
+        /* ===== MANAGER SECTION ===== */
         .manager-section {
             background: #faf8f5;
             border-radius: 16px;
             border: 1.5px solid #d4af37;
-            padding: 16px;
+            padding: 12px 14px;
             margin-bottom: 18px;
         }
         .manager-section .toolbar {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .manager-section .toolbar input {
             flex: 1;
-            min-width: 120px;
-            padding: 10px 14px;
+            min-width: 80px;
+            padding: 8px 12px;
             border: 1.5px solid #e8e4dc;
             border-radius: 10px;
-            font-size: 14px;
+            font-size: 13px;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .manager-section .toolbar button {
-            padding: 10px 16px;
-            background: #b8860b;
-            color: #fff;
+            padding: 8px 14px;
             border: none;
             border-radius: 10px;
             font-weight: 700;
+            font-size: 12px;
             cursor: pointer;
-            font-size: 13px;
             white-space: nowrap;
             -webkit-tap-highlight-color: transparent;
+            transition: 0.2s;
         }
         .manager-section .toolbar button:active {
             transform: scale(0.95);
         }
-        .manager-section .toolbar .btn-danger {
-            background: #dc3545;
-        }
-        .manager-section .toolbar .btn-secondary {
-            background: #6c757d;
-        }
-        .manager-section .toolbar .btn-success {
-            background: #28a745;
-        }
+        .btn-gold { background: #b8860b; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
 
-‎        /* جدول */
+        /* ===== TABLE ===== */
         .table-wrap {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            max-height: 400px;
+            max-height: 350px;
             overflow-y: auto;
         }
         .manager-section table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
-            min-width: 500px;
+            min-width: 480px;
         }
         .manager-section table th {
             background: #f0ede8;
-            padding: 10px 8px;
+            padding: 8px 6px;
             text-align: center;
             font-weight: 700;
             color: #4a4a5a;
@@ -151,18 +148,20 @@
             z-index: 10;
         }
         .manager-section table td {
-            padding: 6px 4px;
+            padding: 4px 3px;
             border-bottom: 1px solid #e8e4dc;
             text-align: center;
         }
         .manager-section table td input {
             width: 100%;
-            padding: 6px 4px;
+            padding: 4px 2px;
             border: 1px solid #e8e4dc;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 12px;
             text-align: center;
             background: #fff;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .manager-section table td input:focus {
             outline: none;
@@ -173,9 +172,10 @@
             color: #fff;
             border: none;
             border-radius: 6px;
-            padding: 4px 10px;
+            padding: 2px 10px;
             cursor: pointer;
             font-size: 12px;
+            -webkit-tap-highlight-color: transparent;
         }
         .manager-section table td .del-row:active {
             transform: scale(0.9);
@@ -183,11 +183,56 @@
         .manager-section .row-count {
             font-size: 12px;
             color: #888;
-            margin-top: 8px;
+            margin-top: 6px;
             text-align: left;
         }
+        .manager-section table td input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #b8860b;
+        }
 
-‎        /* بقیه استایل‌ها */
+        /* ===== CODE INPUT ===== */
+        .code-section {
+            background: #f5f1e8;
+            border-radius: 16px;
+            padding: 12px 14px;
+            margin: 10px 0 18px;
+            border: 1.5px solid #d4af37;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .code-section input {
+            flex: 1;
+            min-width: 80px;
+            padding: 8px 14px;
+            border: 1.5px solid #d4af37;
+            border-radius: 12px;
+            background: #fff;
+            font-size: 14px;
+            text-align: center;
+            letter-spacing: 2px;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .code-section button {
+            padding: 8px 18px;
+            background: #b8860b;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .code-section button:active {
+            transform: scale(0.95);
+        }
+
+        /* ===== FORM ===== */
         .form-group { margin-bottom: 16px; }
         .form-group label {
             display: block;
@@ -220,6 +265,7 @@
             background-size: 16px;
             padding-left: 40px;
         }
+
         .buyer-group {
             background: linear-gradient(135deg, rgba(184, 134, 11, 0.04), rgba(184, 134, 11, 0.01));
             padding: 10px 16px;
@@ -229,8 +275,10 @@
         }
         .buyer-group label { color: #8b6f0b; font-weight: 700; font-size: 13px; }
         .buyer-group input { background: transparent; border: none; padding: 4px 0; font-size: 15px; font-weight: 600; width: 100%; }
+
         .row { display: flex; gap: 12px; flex-wrap: wrap; }
-        .row .form-group { flex: 1; min-width: 120px; }
+        .row .form-group { flex: 1; min-width: 100px; }
+
         .checkbox-group {
             display: flex;
             align-items: center;
@@ -267,6 +315,7 @@
             font-size: 14px;
             font-weight: bold;
         }
+
         .calc-btn {
             width: 100%;
             padding: 14px;
@@ -284,6 +333,7 @@
         .calc-btn:active {
             transform: scale(0.97);
         }
+
         .tabs {
             display: flex;
             background: #f3f0ea;
@@ -304,8 +354,10 @@
             -webkit-tap-highlight-color: transparent;
         }
         .tab-btn.active { background: #ffffff; color: #b8860b; }
+
         .section { display: none; }
         .section.active { display: block; }
+
         .results {
             background: #faf9f7;
             border-radius: 18px;
@@ -348,47 +400,7 @@
             transform: scale(0.95);
         }
 
-‎        /* کد ورودی ساده */
-        .code-section {
-            background: #f5f1e8;
-            border-radius: 16px;
-            padding: 14px 16px;
-            margin: 10px 0 18px;
-            border: 1.5px solid #d4af37;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .code-section input {
-            flex: 1;
-            min-width: 100px;
-            padding: 10px 14px;
-            border: 1.5px solid #d4af37;
-            border-radius: 12px;
-            background: #fff;
-            font-size: 15px;
-            text-align: center;
-            letter-spacing: 2px;
-        }
-        .code-section button {
-            padding: 10px 18px;
-            background: #b8860b;
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 13px;
-            transition: 0.2s;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .code-section button:active {
-            transform: scale(0.95);
-        }
-        .code-section button:hover { background: #8b6f0b; }
-
-‎        /* مودال فاکتور */
+        /* ===== INVOICE ===== */
         .invoice-overlay {
             display: none;
             position: fixed;
@@ -415,7 +427,6 @@
             overflow: hidden;
             position: relative;
             margin: auto;
-            transition: all 0.3s ease;
         }
         .invoice-box.bw-mode {
             background: #ffffff !important;
@@ -521,14 +532,14 @@
             background: #ffffff;
             color: #b8860b;
             flex: 1;
-            min-width: 75px;
+            min-width: 65px;
             -webkit-tap-highlight-color: transparent;
         }
         .invoice-actions button:active {
             transform: scale(0.95);
         }
-        .invoice-actions button:hover { background: #b8860b; color: #fff; }
 
+        /* ===== HISTORY ===== */
         .history-overlay {
             display: none;
             position: fixed;
@@ -563,6 +574,7 @@
             font-size: 12px;
         }
         .history-item-header { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 4px; color: #b8860b; }
+
         .toast {
             position: fixed;
             bottom: 25px; left: 50%;
@@ -577,6 +589,7 @@
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+        /* ===== PRINT ===== */
         @media print {
             @page {
                 size: A4 portrait;
@@ -625,6 +638,8 @@
                 opacity: 1 !important;
             }
         }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 480px) {
             .app-card {
                 padding: 16px 12px 20px;
@@ -636,7 +651,7 @@
                 padding: 10px;
             }
             .code-section input {
-                min-width: 80px;
+                min-width: 70px;
                 font-size: 13px;
             }
             .code-section button {
@@ -644,23 +659,27 @@
                 font-size: 12px;
             }
             .row .form-group {
-                min-width: 80px;
+                min-width: 70px;
             }
             .invoice-actions button {
-                min-width: 60px;
+                min-width: 50px;
                 font-size: 11px;
                 padding: 6px 8px;
             }
             .result-item.total {
                 font-size: 15px;
             }
-            .manager-section .toolbar input {
-                min-width: 80px;
-                font-size: 12px;
-            }
             .manager-section .toolbar button {
                 font-size: 11px;
-                padding: 8px 10px;
+                padding: 6px 10px;
+            }
+            .manager-section table {
+                font-size: 12px;
+                min-width: 380px;
+            }
+            .manager-section table td input {
+                font-size: 11px;
+                padding: 2px;
             }
         }
     </style>
@@ -675,15 +694,15 @@
         </div>
     </div>
 
-‎    <!-- ===== بخش مدیریت جدولی ===== -->
+    <!-- ===== MANAGER SECTION ===== -->
     <div class="manager-section">
         <div class="toolbar">
-            <input type="text" id="searchInput" placeholder="🔍 جستجوی کد..." onkeyup="filterTable()" />
-            <button onclick="addRow()">➕ افزودن ردیف</button>
-            <button onclick="addMultipleRows()">📋 افزودن چند ردیف</button>
-            <button onclick="saveAllRows()" class="btn-success">💾 ذخیره همه</button>
-            <button onclick="deleteSelectedRows()" class="btn-danger">🗑️ حذف انتخاب‌شده</button>
-            <button onclick="toggleManager()" class="btn-secondary">📦 جمع کردن</button>
+            <input type="text" id="searchInput" placeholder="🔍 جستجو..." onkeyup="renderTable()" />
+            <button class="btn-gold" onclick="addRow()">➕ افزودن</button>
+            <button class="btn-gold" onclick="addMultipleRows()">📋 چند ردیف</button>
+            <button class="btn-success" onclick="saveAllRows()">💾 ذخیره</button>
+            <button class="btn-danger" onclick="deleteSelectedRows()">🗑️ حذف</button>
+            <button class="btn-secondary" onclick="toggleManager()">📦 جمع</button>
         </div>
         <div id="tableContainer">
             <div class="table-wrap">
@@ -691,23 +710,22 @@
                     <thead>
                         <tr>
                             <th style="width:30px;"><input type="checkbox" id="selectAll" onchange="toggleAllRows()" /></th>
-                            <th style="min-width:80px;">کد</th>
-                            <th style="min-width:70px;">وزن</th>
-                            <th style="min-width:70px;">اجرت</th>
-                            <th style="min-width:70px;">سود</th>
-                            <th style="min-width:70px;">مالیات</th>
-                            <th style="width:50px;">عملیات</th>
+                            <th style="min-width:70px;">کد</th>
+                            <th style="min-width:60px;">وزن</th>
+                            <th style="min-width:60px;">اجرت</th>
+                            <th style="min-width:60px;">سود</th>
+                            <th style="min-width:60px;">مالیات</th>
+                            <th style="width:40px;">عملیات</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody">
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
             </div>
             <div class="row-count" id="rowCount">تعداد: ۰ ردیف</div>
         </div>
     </div>
 
-‎    <!-- ===== کد ورودی ===== -->
+    <!-- ===== CODE INPUT ===== -->
     <div class="code-section">
         <input type="text" id="codeInput" placeholder="کد طلا را وارد کنید..." dir="ltr" />
         <button onclick="applyCode()">🔍 اعمال</button>
@@ -821,7 +839,7 @@
     </div>
 </div>
 
-‎<!-- ===== فاکتور ===== -->
+<!-- ===== INVOICE OVERLAY ===== -->
 <div class="invoice-overlay" id="invoiceOverlay">
     <div class="invoice-box" id="invoiceBox">
         <div class="invoice-header">
@@ -841,7 +859,7 @@
     </div>
 </div>
 
-‎<!-- ===== تاریخچه ===== -->
+<!-- ===== HISTORY OVERLAY ===== -->
 <div class="history-overlay" id="historyOverlay">
     <div class="history-box">
         <div class="history-header">
@@ -861,7 +879,6 @@ let lastGoldData = null;
 let lastCoinData = null;
 let currentInvoiceType = 'gold';
 let managerVisible = true;
-let editingRowId = null;
 
 // ===== CODE STORAGE =====
 function getCodes() {
@@ -875,7 +892,7 @@ function saveCodes(codes) {
     renderTable();
 }
 
-‎// ===== رندر جدول =====
+// ===== RENDER TABLE =====
 function renderTable() {
     const codes = getCodes();
     const search = document.getElementById('searchInput').value.trim().toUpperCase();
@@ -883,7 +900,7 @@ function renderTable() {
     const keys = Object.keys(codes).filter(k => !search || k.includes(search));
     
     if (keys.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" style="padding:20px;color:#888;">هیچ کدی یافت نشد</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" style="padding:15px;color:#888;text-align:center;">هیچ کدی یافت نشد</td></tr>`;
         document.getElementById('rowCount').textContent = 'تعداد: ۰ ردیف';
         return;
     }
@@ -893,11 +910,11 @@ function renderTable() {
         return `
             <tr data-code="${k}">
                 <td><input type="checkbox" class="row-check" /></td>
-                <td><input type="text" class="edit-code" value="${k}" style="font-weight:700;color:#b8860b;" /></td>
-                <td><input type="number" class="edit-weight" step="0.001" value="${d.weight || ''}" /></td>
-                <td><input type="number" class="edit-wage" step="0.1" value="${d.wage ?? ''}" /></td>
-                <td><input type="number" class="edit-profit" step="0.1" value="${d.profit || ''}" /></td>
-                <td><input type="number" class="edit-tax" step="0.1" value="${d.tax ?? ''}" /></td>
+                <td><input type="text" class="edit-code" value="${k}" style="font-weight:700;color:#b8860b;width:70px;" /></td>
+                <td><input type="number" class="edit-weight" step="0.001" value="${d.weight || ''}" style="width:60px;" /></td>
+                <td><input type="number" class="edit-wage" step="0.1" value="${d.wage ?? ''}" style="width:55px;" /></td>
+                <td><input type="number" class="edit-profit" step="0.1" value="${d.profit || ''}" style="width:55px;" /></td>
+                <td><input type="number" class="edit-tax" step="0.1" value="${d.tax ?? ''}" style="width:55px;" /></td>
                 <td><button class="del-row" onclick="deleteRow('${k}')">✕</button></td>
             </tr>
         `;
@@ -906,67 +923,51 @@ function renderTable() {
     document.getElementById('rowCount').textContent = `تعداد: ${keys.length} ردیف`;
 }
 
-‎// ===== فیلتر جستجو =====
-function filterTable() {
-    renderTable();
-}
-
-‎// ===== انتخاب همه =====
+// ===== TOGGLE ALL =====
 function toggleAllRows() {
     const checked = document.getElementById('selectAll').checked;
     document.querySelectorAll('.row-check').forEach(cb => cb.checked = checked);
 }
 
-‎// ===== افزودن ردیف خالی =====
+// ===== ADD ROW =====
 function addRow() {
     const codes = getCodes();
-    let newKey = 'G';
-    let num = 1;
-    while (codes[newKey + String(num).padStart(3, '0')]) num++;
-    codes[newKey + String(num).padStart(3, '0')] = { weight: 0, wage: 0, profit: 0, tax: 0 };
+    let i = 1;
+    while (codes['G' + String(i).padStart(3, '0')]) i++;
+    codes['G' + String(i).padStart(3, '0')] = { weight: 0, wage: 0, profit: 0, tax: 0 };
     saveCodes(codes);
-    renderTable();
     toast('✅ ردیف جدید اضافه شد');
 }
 
-‎// ===== افزودن چند ردیف =====
+// ===== ADD MULTIPLE ROWS =====
 function addMultipleRows() {
     const count = prompt('تعداد ردیف‌های جدید:', '5');
     if (!count) return;
-    const num = parseInt(count);
-    if (isNaN(num) || num < 1) return toast('عدد معتبر وارد کنید');
+    const n = parseInt(count);
+    if (isNaN(n) || n < 1) return toast('عدد معتبر وارد کنید');
     
     const codes = getCodes();
-    let added = 0;
-    let base = 1;
-    const keys = Object.keys(codes);
-    
-    for (let i = 0; i < num; i++) {
-        let newKey = 'G';
-        let numStr = String(base + i).padStart(3, '0');
-        while (codes[newKey + numStr]) {
-            base++;
-            numStr = String(base + i).padStart(3, '0');
-        }
-        codes[newKey + numStr] = { weight: 0, wage: 0, profit: 0, tax: 0 };
+    let added = 0, i = 1;
+    for (let j = 0; j < n; j++) {
+        while (codes['G' + String(i).padStart(3, '0')]) i++;
+        codes['G' + String(i).padStart(3, '0')] = { weight: 0, wage: 0, profit: 0, tax: 0 };
         added++;
+        i++;
     }
-    
     saveCodes(codes);
     toast(`✅ ${added} ردیف جدید اضافه شد`);
 }
 
-‎// ===== حذف ردیف =====
+// ===== DELETE ROW =====
 function deleteRow(key) {
     if (!confirm(`کد "${key}" حذف شود؟`)) return;
     const codes = getCodes();
     delete codes[key];
     saveCodes(codes);
-    renderTable();
     toast(`کد ${key} حذف شد`);
 }
 
-‎// ===== حذف انتخاب‌شده‌ها =====
+// ===== DELETE SELECTED ROWS =====
 function deleteSelectedRows() {
     const checks = document.querySelectorAll('.row-check:checked');
     if (checks.length === 0) return toast('هیچ ردیفی انتخاب نشده');
@@ -984,7 +985,7 @@ function deleteSelectedRows() {
     toast(`✅ ${checks.length} ردیف حذف شد`);
 }
 
-‎// ===== ذخیره همه تغییرات =====
+// ===== SAVE ALL ROWS =====
 function saveAllRows() {
     const codes = getCodes();
     const rows = document.querySelectorAll('#tableBody tr');
@@ -998,14 +999,8 @@ function saveAllRows() {
         const profit = parseFloat(tr.querySelector('.edit-profit')?.value) || 0;
         const tax = parseFloat(tr.querySelector('.edit-tax')?.value) || 0;
         
-        if (!newCode) return;
-        if (weight <= 0) return;
-        
-‎        // اگر کد تغییر کرده
-        if (oldCode && oldCode !== newCode) {
-            delete codes[oldCode];
-        }
-        
+        if (!newCode || weight <= 0) return;
+        if (oldCode && oldCode !== newCode) delete codes[oldCode];
         codes[newCode] = { weight, wage, profit, tax };
         tr.setAttribute('data-code', newCode);
         saved++;
@@ -1015,21 +1010,21 @@ function saveAllRows() {
     toast(`✅ ${saved} ردیف ذخیره شد`);
 }
 
-‎// ===== جمع کردن/باز کردن مدیریت =====
+// ===== TOGGLE MANAGER =====
 function toggleManager() {
     const container = document.getElementById('tableContainer');
     if (managerVisible) {
         container.style.display = 'none';
-        document.querySelector('.manager-section .toolbar button.btn-secondary').textContent = '📂 نمایش جدول';
+        document.querySelector('.manager-section .btn-secondary').textContent = '📂 نمایش';
     } else {
         container.style.display = 'block';
-        document.querySelector('.manager-section .toolbar button.btn-secondary').textContent = '📦 جمع کردن';
+        document.querySelector('.manager-section .btn-secondary').textContent = '📦 جمع';
         renderTable();
     }
     managerVisible = !managerVisible;
 }
 
-‎// ===== اعمال کد از جدول =====
+// ===== APPLY CODE =====
 function applyCode() {
     const code = document.getElementById('codeInput').value.trim().toUpperCase();
     if (!code) return toast('لطفاً کد را وارد کنید');
@@ -1055,7 +1050,7 @@ function applyCode() {
     document.getElementById('codeInput').value = '';
 }
 
-// ===== ENTER برای کد =====
+// ===== ENTER KEY =====
 document.getElementById('codeInput').addEventListener('keyup', function(e) {
     if (e.key === 'Enter') applyCode();
 });
@@ -1322,7 +1317,7 @@ document.getElementById('historyOverlay').addEventListener('click', function(e) 
     if (e.target === this) closeHistory();
 });
 
-// ===== LOAD SAMPLE CODES & RENDER =====
+// ===== LOAD SAMPLE CODES =====
 (function init() {
     const codes = getCodes();
     if (Object.keys(codes).length === 0) {
@@ -1330,8 +1325,6 @@ document.getElementById('historyOverlay').addEventListener('click', function(e) 
             'G001': { weight: 4.25, wage: 15, profit: 7, tax: 9 },
             'G002': { weight: 3.75, wage: 12, profit: 5, tax: 0 },
             'G003': { weight: 5.20, wage: 18, profit: 8, tax: 0 },
-            'G004': { weight: 2.80, wage: 10, profit: 6, tax: 9 },
-            'G005': { weight: 6.10, wage: 20, profit: 10, tax: 0 },
         };
         saveCodes(samples);
     }
