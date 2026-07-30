@@ -26,7 +26,7 @@
             -webkit-font-smoothing: antialiased;
         }
         .app-card {
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             background: #ffffff;
             border-radius: 32px;
@@ -78,6 +78,116 @@
         .header-actions button:active {
             transform: scale(0.95);
         }
+
+‎        /* ===== بخش مدیریت جدولی ===== */
+        .manager-section {
+            background: #faf8f5;
+            border-radius: 16px;
+            border: 1.5px solid #d4af37;
+            padding: 16px;
+            margin-bottom: 18px;
+        }
+        .manager-section .toolbar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+        .manager-section .toolbar input {
+            flex: 1;
+            min-width: 120px;
+            padding: 10px 14px;
+            border: 1.5px solid #e8e4dc;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        .manager-section .toolbar button {
+            padding: 10px 16px;
+            background: #b8860b;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 13px;
+            white-space: nowrap;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .manager-section .toolbar button:active {
+            transform: scale(0.95);
+        }
+        .manager-section .toolbar .btn-danger {
+            background: #dc3545;
+        }
+        .manager-section .toolbar .btn-secondary {
+            background: #6c757d;
+        }
+        .manager-section .toolbar .btn-success {
+            background: #28a745;
+        }
+
+‎        /* جدول */
+        .table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .manager-section table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            min-width: 500px;
+        }
+        .manager-section table th {
+            background: #f0ede8;
+            padding: 10px 8px;
+            text-align: center;
+            font-weight: 700;
+            color: #4a4a5a;
+            border-bottom: 2px solid #d4af37;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .manager-section table td {
+            padding: 6px 4px;
+            border-bottom: 1px solid #e8e4dc;
+            text-align: center;
+        }
+        .manager-section table td input {
+            width: 100%;
+            padding: 6px 4px;
+            border: 1px solid #e8e4dc;
+            border-radius: 6px;
+            font-size: 13px;
+            text-align: center;
+            background: #fff;
+        }
+        .manager-section table td input:focus {
+            outline: none;
+            border-color: #b8860b;
+        }
+        .manager-section table td .del-row {
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 4px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        .manager-section table td .del-row:active {
+            transform: scale(0.9);
+        }
+        .manager-section .row-count {
+            font-size: 12px;
+            color: #888;
+            margin-top: 8px;
+            text-align: left;
+        }
+
+‎        /* بقیه استایل‌ها */
         .form-group { margin-bottom: 16px; }
         .form-group label {
             display: block;
@@ -238,7 +348,7 @@
             transform: scale(0.95);
         }
 
-        /* بخش کد با دکمه بروزرسانی از گوگل شیت */
+‎        /* کد ورودی ساده */
         .code-section {
             background: #f5f1e8;
             border-radius: 16px;
@@ -277,114 +387,8 @@
             transform: scale(0.95);
         }
         .code-section button:hover { background: #8b6f0b; }
-        .code-section .btn-green {
-            background: #2e7d32;
-        }
-        .code-section .btn-green:hover { background: #1b5e20; }
 
-        /* مودال گوگل شیت */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            -webkit-backdrop-filter: blur(5px);
-            backdrop-filter: blur(5px);
-            z-index: 1001;
-            justify-content: center;
-            align-items: center;
-            padding: 16px;
-        }
-        .modal-overlay.show { display: flex; }
-        .modal-box {
-            background: #fff;
-            width: 100%;
-            max-width: 500px;
-            border-radius: 20px;
-            padding: 24px;
-            max-height: 85vh;
-            display: flex;
-            flex-direction: column;
-        }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-        .modal-header h3 { font-size: 20px; color: #b8860b; }
-        .modal-close { background: none; border: none; font-size: 28px; cursor: pointer; color: #999; padding: 0 8px; }
-        .modal-list { overflow-y: auto; flex: 1; margin-bottom: 16px; -webkit-overflow-scrolling: touch; }
-        .code-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #f9f8f6;
-            padding: 10px 14px;
-            border-radius: 12px;
-            margin-bottom: 8px;
-            border: 1px solid #e8e4dc;
-        }
-        .code-item .code-name { font-weight: 700; color: #b8860b; font-size: 14px; }
-        .code-item .code-details { font-size: 12px; color: #666; }
-        .code-item .del-btn {
-            background: #ff4d4d;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 4px 12px;
-            cursor: pointer;
-            font-size: 12px;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .code-item .del-btn:active {
-            transform: scale(0.9);
-        }
-        .add-code-form { display: flex; flex-direction: column; gap: 10px; }
-        .add-code-form .row { gap: 8px; }
-        .add-code-form input { 
-            padding: 10px; 
-            border: 1.5px solid #e8e4dc; 
-            border-radius: 12px; 
-            flex: 1;
-            min-width: 60px;
-        }
-        .add-code-form button { 
-            padding: 10px; 
-            background: #b8860b; 
-            color: #fff; 
-            border: none; 
-            border-radius: 12px; 
-            font-weight: 700; 
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-        }
-        .add-code-form button:active {
-            transform: scale(0.95);
-        }
-
-        /* مودال تنظیمات گوگل شیت */
-        .settings-box {
-            background: #f9f8f6;
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-        }
-        .settings-box label {
-            font-weight: 700;
-            font-size: 13px;
-            color: #4a4a5a;
-        }
-        .settings-box input {
-            width: 100%;
-            padding: 10px;
-            border: 1.5px solid #e8e4dc;
-            border-radius: 10px;
-            margin-top: 4px;
-            font-size: 13px;
-            direction: ltr;
-        }
-        .settings-box .help {
-            font-size: 12px;
-            color: #888;
-            margin-top: 4px;
-        }
-
+‎        /* مودال فاکتور */
         .invoice-overlay {
             display: none;
             position: fixed;
@@ -587,7 +591,7 @@
                 background: #ffffff !important;
                 display: block !important;
             }
-            .app-card, .history-overlay, .toast, .invoice-actions, .modal-overlay {
+            .app-card, .history-overlay, .toast, .invoice-actions {
                 display: none !important;
             }
             .invoice-overlay {
@@ -650,6 +654,14 @@
             .result-item.total {
                 font-size: 15px;
             }
+            .manager-section .toolbar input {
+                min-width: 80px;
+                font-size: 12px;
+            }
+            .manager-section .toolbar button {
+                font-size: 11px;
+                padding: 8px 10px;
+            }
         }
     </style>
 </head>
@@ -663,11 +675,42 @@
         </div>
     </div>
 
-    <!-- ===== بخش کد با گوگل شیت ===== -->
+‎    <!-- ===== بخش مدیریت جدولی ===== -->
+    <div class="manager-section">
+        <div class="toolbar">
+            <input type="text" id="searchInput" placeholder="🔍 جستجوی کد..." onkeyup="filterTable()" />
+            <button onclick="addRow()">➕ افزودن ردیف</button>
+            <button onclick="addMultipleRows()">📋 افزودن چند ردیف</button>
+            <button onclick="saveAllRows()" class="btn-success">💾 ذخیره همه</button>
+            <button onclick="deleteSelectedRows()" class="btn-danger">🗑️ حذف انتخاب‌شده</button>
+            <button onclick="toggleManager()" class="btn-secondary">📦 جمع کردن</button>
+        </div>
+        <div id="tableContainer">
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:30px;"><input type="checkbox" id="selectAll" onchange="toggleAllRows()" /></th>
+                            <th style="min-width:80px;">کد</th>
+                            <th style="min-width:70px;">وزن</th>
+                            <th style="min-width:70px;">اجرت</th>
+                            <th style="min-width:70px;">سود</th>
+                            <th style="min-width:70px;">مالیات</th>
+                            <th style="width:50px;">عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                    </tbody>
+                </table>
+            </div>
+            <div class="row-count" id="rowCount">تعداد: ۰ ردیف</div>
+        </div>
+    </div>
+
+‎    <!-- ===== کد ورودی ===== -->
     <div class="code-section">
         <input type="text" id="codeInput" placeholder="کد طلا را وارد کنید..." dir="ltr" />
         <button onclick="applyCode()">🔍 اعمال</button>
-        <button class="btn-green" onclick="openGoogleSheetModal()">📊 از گوگل شیت</button>
     </div>
 
     <div class="form-group">
@@ -778,37 +821,7 @@
     </div>
 </div>
 
-<!-- ===== مودال گوگل شیت ===== -->
-<div class="modal-overlay" id="googleSheetModal">
-    <div class="modal-box">
-        <div class="modal-header">
-            <h3>📊 اتصال به گوگل شیت</h3>
-            <button class="modal-close" onclick="closeGoogleSheetModal()">&times;</button>
-        </div>
-        
-        <div class="settings-box">
-            <label>لینک گوگل شیت (CSV)</label>
-            <input type="text" id="sheetUrl" placeholder="https://docs.google.com/spreadsheets/d/.../export?format=csv" />
-            <div class="help">
-                💡 از File &gt; Share &gt; Publish to web &gt; CSV دریافت کنید
-            </div>
-        </div>
-        
-        <button onclick="loadFromGoogleSheet()" style="width:100%;padding:12px;background:#b8860b;color:#fff;border:none;border-radius:12px;font-weight:700;cursor:pointer;">
-            📥 بارگذاری از گوگل شیت
-        </button>
-        
-        <div style="margin-top:12px;font-size:13px;color:#666;">
-            <strong>ساختار فایل:</strong> ستون‌های <strong>کد</strong>، <strong>وزن</strong>، <strong>اجرت</strong>، <strong>سود</strong>، <strong>مالیات</strong>
-        </div>
-        
-        <div id="sheetStatus" style="margin-top:10px;padding:10px;background:#f9f8f6;border-radius:10px;font-size:13px;color:#888;">
-            منتظر بارگذاری...
-        </div>
-    </div>
-</div>
-
-<!-- ===== INVOICE OVERLAY ===== -->
+‎<!-- ===== فاکتور ===== -->
 <div class="invoice-overlay" id="invoiceOverlay">
     <div class="invoice-box" id="invoiceBox">
         <div class="invoice-header">
@@ -828,7 +841,7 @@
     </div>
 </div>
 
-<!-- ===== HISTORY OVERLAY ===== -->
+‎<!-- ===== تاریخچه ===== -->
 <div class="history-overlay" id="historyOverlay">
     <div class="history-box">
         <div class="history-header">
@@ -847,6 +860,8 @@
 let lastGoldData = null;
 let lastCoinData = null;
 let currentInvoiceType = 'gold';
+let managerVisible = true;
+let editingRowId = null;
 
 // ===== CODE STORAGE =====
 function getCodes() {
@@ -857,90 +872,172 @@ function getCodes() {
 
 function saveCodes(codes) {
     localStorage.setItem('gold_codes', JSON.stringify(codes));
+    renderTable();
 }
 
-// ===== گوگل شیت =====
-function openGoogleSheetModal() {
-    document.getElementById('googleSheetModal').classList.add('show');
-}
-
-function closeGoogleSheetModal() {
-    document.getElementById('googleSheetModal').classList.remove('show');
-}
-
-function loadFromGoogleSheet() {
-    const url = document.getElementById('sheetUrl').value.trim();
-    if (!url) {
-        return toast('❌ لینک گوگل شیت را وارد کنید');
+‎// ===== رندر جدول =====
+function renderTable() {
+    const codes = getCodes();
+    const search = document.getElementById('searchInput').value.trim().toUpperCase();
+    const tbody = document.getElementById('tableBody');
+    const keys = Object.keys(codes).filter(k => !search || k.includes(search));
+    
+    if (keys.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="padding:20px;color:#888;">هیچ کدی یافت نشد</td></tr>`;
+        document.getElementById('rowCount').textContent = 'تعداد: ۰ ردیف';
+        return;
     }
     
-    document.getElementById('sheetStatus').textContent = '⏳ در حال بارگذاری...';
+    tbody.innerHTML = keys.map(k => {
+        const d = codes[k];
+        return `
+            <tr data-code="${k}">
+                <td><input type="checkbox" class="row-check" /></td>
+                <td><input type="text" class="edit-code" value="${k}" style="font-weight:700;color:#b8860b;" /></td>
+                <td><input type="number" class="edit-weight" step="0.001" value="${d.weight || ''}" /></td>
+                <td><input type="number" class="edit-wage" step="0.1" value="${d.wage ?? ''}" /></td>
+                <td><input type="number" class="edit-profit" step="0.1" value="${d.profit || ''}" /></td>
+                <td><input type="number" class="edit-tax" step="0.1" value="${d.tax ?? ''}" /></td>
+                <td><button class="del-row" onclick="deleteRow('${k}')">✕</button></td>
+            </tr>
+        `;
+    }).join('');
     
-    fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error('خطا در دریافت فایل');
-            return response.text();
-        })
-        .then(csvText => {
-            // تبدیل CSV به JSON
-            const lines = csvText.split('\n').filter(line => line.trim());
-            if (lines.length < 2) throw new Error('فایل خالی است');
-            
-            const headers = lines[0].split(',').map(h => h.trim());
-            const colMap = {};
-            headers.forEach((h, i) => {
-                const clean = h.replace(/["']/g, '').trim();
-                if (clean === 'کد') colMap.code = i;
-                else if (clean === 'وزن') colMap.weight = i;
-                else if (clean === 'اجرت') colMap.wage = i;
-                else if (clean === 'سود') colMap.profit = i;
-                else if (clean === 'مالیات') colMap.tax = i;
-            });
-            
-            if (colMap.code === undefined || colMap.weight === undefined) {
-                throw new Error('ستون‌های کد و وزن الزامی است');
-            }
-            
-            let codes = getCodes();
-            let added = 0;
-            
-            for (let i = 1; i < lines.length; i++) {
-                const cols = lines[i].split(',').map(c => c.replace(/["']/g, '').trim());
-                const code = cols[colMap.code]?.toUpperCase() || '';
-                const weight = parseFloat(cols[colMap.weight]);
-                const wage = parseFloat(cols[colMap.wage] || 0);
-                const profit = parseFloat(cols[colMap.profit] || 0);
-                const tax = parseFloat(cols[colMap.tax] || 0);
-                
-                if (!code || isNaN(weight)) continue;
-                if (codes[code]) continue;
-                
-                codes[code] = { weight, wage, profit, tax };
-                added++;
-            }
-            
-            saveCodes(codes);
-            document.getElementById('sheetStatus').innerHTML = '✅ ' + added + ' کد جدید از گوگل شیت اضافه شد';
-            toast('✅ ' + added + ' کد از گوگل شیت بارگذاری شد');
-            
-            setTimeout(() => closeGoogleSheetModal(), 1500);
-        })
-        .catch(err => {
-            document.getElementById('sheetStatus').innerHTML = '❌ ' + err.message;
-            toast('❌ خطا: ' + err.message);
-        });
+    document.getElementById('rowCount').textContent = `تعداد: ${keys.length} ردیف`;
 }
 
-// ===== APPLY CODE (با پشتیبانی از مقدار صفر) =====
+‎// ===== فیلتر جستجو =====
+function filterTable() {
+    renderTable();
+}
+
+‎// ===== انتخاب همه =====
+function toggleAllRows() {
+    const checked = document.getElementById('selectAll').checked;
+    document.querySelectorAll('.row-check').forEach(cb => cb.checked = checked);
+}
+
+‎// ===== افزودن ردیف خالی =====
+function addRow() {
+    const codes = getCodes();
+    let newKey = 'G';
+    let num = 1;
+    while (codes[newKey + String(num).padStart(3, '0')]) num++;
+    codes[newKey + String(num).padStart(3, '0')] = { weight: 0, wage: 0, profit: 0, tax: 0 };
+    saveCodes(codes);
+    renderTable();
+    toast('✅ ردیف جدید اضافه شد');
+}
+
+‎// ===== افزودن چند ردیف =====
+function addMultipleRows() {
+    const count = prompt('تعداد ردیف‌های جدید:', '5');
+    if (!count) return;
+    const num = parseInt(count);
+    if (isNaN(num) || num < 1) return toast('عدد معتبر وارد کنید');
+    
+    const codes = getCodes();
+    let added = 0;
+    let base = 1;
+    const keys = Object.keys(codes);
+    
+    for (let i = 0; i < num; i++) {
+        let newKey = 'G';
+        let numStr = String(base + i).padStart(3, '0');
+        while (codes[newKey + numStr]) {
+            base++;
+            numStr = String(base + i).padStart(3, '0');
+        }
+        codes[newKey + numStr] = { weight: 0, wage: 0, profit: 0, tax: 0 };
+        added++;
+    }
+    
+    saveCodes(codes);
+    toast(`✅ ${added} ردیف جدید اضافه شد`);
+}
+
+‎// ===== حذف ردیف =====
+function deleteRow(key) {
+    if (!confirm(`کد "${key}" حذف شود؟`)) return;
+    const codes = getCodes();
+    delete codes[key];
+    saveCodes(codes);
+    renderTable();
+    toast(`کد ${key} حذف شد`);
+}
+
+‎// ===== حذف انتخاب‌شده‌ها =====
+function deleteSelectedRows() {
+    const checks = document.querySelectorAll('.row-check:checked');
+    if (checks.length === 0) return toast('هیچ ردیفی انتخاب نشده');
+    if (!confirm(`${checks.length} ردیف حذف شوند؟`)) return;
+    
+    const codes = getCodes();
+    checks.forEach(cb => {
+        const tr = cb.closest('tr');
+        if (tr) {
+            const code = tr.getAttribute('data-code');
+            if (code) delete codes[code];
+        }
+    });
+    saveCodes(codes);
+    toast(`✅ ${checks.length} ردیف حذف شد`);
+}
+
+‎// ===== ذخیره همه تغییرات =====
+function saveAllRows() {
+    const codes = getCodes();
+    const rows = document.querySelectorAll('#tableBody tr');
+    let saved = 0;
+    
+    rows.forEach(tr => {
+        const oldCode = tr.getAttribute('data-code');
+        const newCode = tr.querySelector('.edit-code')?.value?.trim().toUpperCase() || '';
+        const weight = parseFloat(tr.querySelector('.edit-weight')?.value) || 0;
+        const wage = parseFloat(tr.querySelector('.edit-wage')?.value) || 0;
+        const profit = parseFloat(tr.querySelector('.edit-profit')?.value) || 0;
+        const tax = parseFloat(tr.querySelector('.edit-tax')?.value) || 0;
+        
+        if (!newCode) return;
+        if (weight <= 0) return;
+        
+‎        // اگر کد تغییر کرده
+        if (oldCode && oldCode !== newCode) {
+            delete codes[oldCode];
+        }
+        
+        codes[newCode] = { weight, wage, profit, tax };
+        tr.setAttribute('data-code', newCode);
+        saved++;
+    });
+    
+    saveCodes(codes);
+    toast(`✅ ${saved} ردیف ذخیره شد`);
+}
+
+‎// ===== جمع کردن/باز کردن مدیریت =====
+function toggleManager() {
+    const container = document.getElementById('tableContainer');
+    if (managerVisible) {
+        container.style.display = 'none';
+        document.querySelector('.manager-section .toolbar button.btn-secondary').textContent = '📂 نمایش جدول';
+    } else {
+        container.style.display = 'block';
+        document.querySelector('.manager-section .toolbar button.btn-secondary').textContent = '📦 جمع کردن';
+        renderTable();
+    }
+    managerVisible = !managerVisible;
+}
+
+‎// ===== اعمال کد از جدول =====
 function applyCode() {
     const code = document.getElementById('codeInput').value.trim().toUpperCase();
-    if (!code) return showToast('لطفاً کد را وارد کنید');
+    if (!code) return toast('لطفاً کد را وارد کنید');
 
     const codes = getCodes();
-    if (!codes[code]) return showToast('❌ کد یافت نشد');
+    if (!codes[code]) return toast('❌ کد یافت نشد');
 
     const data = codes[code];
-    
     if (data.weight !== undefined && data.weight !== null) {
         document.getElementById('weight').value = data.weight;
     }
@@ -954,11 +1051,11 @@ function applyCode() {
         document.getElementById('tax').value = data.tax;
     }
 
-    showToast(`✅ کد ${code} اعمال شد`);
+    toast(`✅ کد ${code} اعمال شد`);
     document.getElementById('codeInput').value = '';
 }
 
-// ===== ENTER KEY =====
+// ===== ENTER برای کد =====
 document.getElementById('codeInput').addEventListener('keyup', function(e) {
     if (e.key === 'Enter') applyCode();
 });
@@ -1218,9 +1315,6 @@ function printInvoiceModal() {
 }
 
 // ===== CLOSE MODAL ON OVERLAY CLICK =====
-document.getElementById('googleSheetModal').addEventListener('click', function(e) {
-    if (e.target === this) closeGoogleSheetModal();
-});
 document.getElementById('invoiceOverlay').addEventListener('click', function(e) {
     if (e.target === this) closeInvoice();
 });
@@ -1228,17 +1322,20 @@ document.getElementById('historyOverlay').addEventListener('click', function(e) 
     if (e.target === this) closeHistory();
 });
 
-// ===== LOAD SAMPLE CODES =====
-(function loadSampleCodes() {
+// ===== LOAD SAMPLE CODES & RENDER =====
+(function init() {
     const codes = getCodes();
     if (Object.keys(codes).length === 0) {
         const samples = {
             'G001': { weight: 4.25, wage: 15, profit: 7, tax: 9 },
             'G002': { weight: 3.75, wage: 12, profit: 5, tax: 0 },
             'G003': { weight: 5.20, wage: 18, profit: 8, tax: 0 },
+            'G004': { weight: 2.80, wage: 10, profit: 6, tax: 9 },
+            'G005': { weight: 6.10, wage: 20, profit: 10, tax: 0 },
         };
         saveCodes(samples);
     }
+    renderTable();
 })();
 </script>
 </body>
